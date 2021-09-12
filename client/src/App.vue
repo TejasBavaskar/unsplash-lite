@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar @formSubmit="searchBind"/>
+    <HomeImage />
+    <ImageScroll :searchVal="searchValue"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/navbar/Navbar.vue';
+import HomeImage from './components/homeImage/HomeImage.vue';
+import ImageScroll from './components/imageScrollBody/ImageScroll.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Navbar,
+    HomeImage,
+    ImageScroll
+  },
+  data() {
+    return {
+      searchValue: ''
+    }
+  },
+  methods: {
+    searchBind: function(value) {
+      this.searchValue = value;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
