@@ -28,6 +28,7 @@ export default {
   methods: {
     submitForm: function() {
       this.$emit('formSubmit', this.searchKeyWord);
+      this.searchKeyWord = '';
     }
   },
 }
