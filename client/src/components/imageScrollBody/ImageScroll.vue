@@ -1,5 +1,9 @@
 <template>
-  <ImageCard />
+  <div>
+    <div v-for="(item, idx) in cardData" :key="idx">
+      <ImageCard :cardData="item"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,14 +23,15 @@ export default {
   },
   data() {
     return {
-      
+      cardData: {},
     }
   },
   methods: {
     getImages: async function() {
       const serverUrl = process.env.VUE_APP_SERVER_URL;
       const response = await axios.get(`${serverUrl}/api/search/photos?query=${this.searchVal}&page=1`);
-      console.log('Axios Data: ', response);
+      this.cardData = response.data?.results;
+      console.log('Axios Data: ', this.cardData);
     }
   },
   watch: {

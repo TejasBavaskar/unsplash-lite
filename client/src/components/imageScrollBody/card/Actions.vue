@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .action-container {
   width: 100%;
-  height: 40px;
+  height: 41px;
   background-color: white;
   display: flex;
   align-items: center;
