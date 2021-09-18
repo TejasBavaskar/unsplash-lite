@@ -1,17 +1,21 @@
 <template>
-  <button @click="getImages"></button>
+  <ImageCard />
 </template>
 
 <script>
 import axios from 'axios';
+import ImageCard from './card/ImageCard.vue';
 
 export default {
   name: 'ImageScroll',
-  mounted: function() {
-    this.getImages();
+  components: {
+    ImageCard
   },
   props: {
     searchVal: String,
+  },
+  mounted: function() {
+    this.getImages();
   },
   data() {
     return {
