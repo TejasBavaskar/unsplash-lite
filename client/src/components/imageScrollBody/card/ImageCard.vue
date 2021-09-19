@@ -1,13 +1,24 @@
 <template>
   <div class="card">
     <h3>{{ cardData.user.name}}</h3>
-    <img :src="thumbnailUrl" alt="" >
-    <Actions /> 
+    <router-link 
+      :to="{ 
+        name: 'ImageDetails', 
+        params: { 
+          id: cardData.id,
+          cardData: cardData
+        }
+      }"
+    >
+      <img :src="thumbnailUrl" alt="" >
+    </router-link>
+    <Actions />
   </div>
 </template>
 
 <script>
 import Actions from './Actions.vue';
+import getImageHeight from '../../../utils/imageHeightCalculate.js';
 
 export default {
   name: 'ImageCard',
@@ -17,38 +28,10 @@ export default {
   props: {
     cardData: Object,
   },
-  data() {
-    return {
-      defaultHeight: 600,
-      defaultWidth: 375,
-      deviceWidth: window.innerWidth,
-    }
-  },
-  methods: {
-    calculateHeight: function() {
-      const {height, width} =  this.cardData;
-      this.defaultWidth = width / height * this.defaultHeight;
-
-      if(this.defaultWidth >= this.deviceWidth) {
-        this.defaultWidth = this.deviceWidth;
-        this.defaultHeight = height / width * this.defaultWidth;
-      }
-      console.log('New height= ', this.defaultHeight, ' New Width= ', this.defaultWidth);
-
-      //const cardDiv = document.querySelector('.card');
-      //cardDiv.style.height = `${100 + this.defaultHeight}px`;
-
-      return this.defaultHeight;
-    }
-  },
   computed: {
     thumbnailUrl: function() {
-      return `${this.cardData?.urls?.raw}&q=75&auto=format&h=${this.calculateHeight()}`;
+      return `${this.cardData?.urls?.raw}&q=75&auto=format&h=${getImageHeight(this.cardData)}`;
     },
-    imageHeight: function() {
-      return this.calculateHeight();
-    }
-
   }
 }
 </script>

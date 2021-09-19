@@ -1,13 +1,12 @@
 import { AxiosApiRequest } from "../services/axiosRequest.js";
 
-export async function searchPhotos(req, res, next) {
+export async function photoStatistics(req, res, next) {
   const fields = {
-    query: req.query.query,
-    page: req.query.page,
+    id: req.query.id,
   };
 
   try {
-    const response = await AxiosApiRequest.get("search/photos", fields);
+    const response = await AxiosApiRequest.get(`/photos/${fields.id}/statistics`, fields);
     res.status(response.status).send(response.data);
   } catch (err) {
     console.log("Exception= ", err);
