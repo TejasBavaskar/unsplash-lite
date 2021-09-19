@@ -15,9 +15,6 @@ export default {
   components: {
     ImageCard
   },
-  props: {
-    searchVal: String,
-  },
   mounted: function() {
     this.getImages();
   },
@@ -26,16 +23,28 @@ export default {
       cardData: {},
     }
   },
+  computed: {
+    getSearchValue: function() {
+      return this.$store.state.searchValue;
+    }
+  },
   methods: {
     getImages: async function() {
+      if(!this.getSearchValue) {
+        this.$store.commit('setSearchValue', 'Sun');
+      }
+
       const serverUrl = process.env.VUE_APP_SERVER_URL;
-      const response = await axios.get(`${serverUrl}/api/search/photos?query=${this.searchVal}&page=1`);
-      this.cardData = response.data?.results;
-      console.log('Axios Data: ', this.cardData);
+      try {
+        const response = await axios.get(`${serverUrl}/api/search/photos?query=${this.getSearchValue}&page=1`);
+        this.cardData = response.data?.results;
+      } catch (err) {
+        console.error(err);
+      }
     }
   },
   watch: {
-    searchVal: function() {
+    getSearchValue: function() {
       this.getImages();
     }
   }

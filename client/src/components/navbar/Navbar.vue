@@ -27,7 +27,8 @@ export default {
   },
   methods: {
     submitForm: function() {
-      this.$emit('formSubmit', this.searchKeyWord);
+      this.$store.commit('setSearchValue', this.searchKeyWord);
+      this.$router.push('/')
       this.searchKeyWord = '';
     }
   },
