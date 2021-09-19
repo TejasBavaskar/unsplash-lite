@@ -18,7 +18,7 @@
             </span>
           </div>
           <div class="share-btn-box">
-            <button class="share-btn">
+            <button class="share-btn" @click="shareImage">
               <font-awesome-icon icon="share-alt" class="share-icon" />
               Share
             </button>
@@ -86,6 +86,19 @@ export default {
     },
     goBack: function() {
       window.history.back();
+    },
+    shareImage: function() {
+      if(navigator.share) {
+        const shareData = {
+          title: 'Image',
+          text: this.cardData.alt_description,
+          url: window.location.href
+        };
+        navigator.share(shareData);
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Copied');
+      }     
     }
   },
   computed: {
@@ -111,9 +124,10 @@ export default {
   },
   filters: {
     capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
+      if (!value)
+        return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   }
 };
