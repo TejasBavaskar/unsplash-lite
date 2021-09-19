@@ -41,6 +41,8 @@ export default {
     height: 56px;
     background-color: #F7F7F7;
     display: flex;
+    position: sticky;
+    top: 0;
 }
 
 .logo-box {
