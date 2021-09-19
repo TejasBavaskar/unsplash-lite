@@ -1,20 +1,30 @@
 <template>
   <div class="action-container">
-    <div class="icon-box">
+    <button class="icon-box">
       <font-awesome-icon icon="heart" />
-    </div>
-    <div class="icon-box">
+    </button>
+    <button class="icon-box">
       <font-awesome-icon icon="plus" />
-    </div>
-    <div class="icon-box">
+    </button>
+    <button class="icon-box" @click="download">
       <font-awesome-icon icon="cloud-download-alt" />
-    </div>
+    </button>
   </div>
 </template>
 
 <script>
+import downloadImage from '../../../utils/downloadImage.js';
+
 export default {
-  name: 'Actions'
+  name: 'Actions',
+  props: {
+    cardData: Object
+  },
+  methods: {
+    download: function() {
+      downloadImage(this.cardData);
+    }
+  }
 }
 </script>
 

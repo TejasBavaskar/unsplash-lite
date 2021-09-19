@@ -12,7 +12,7 @@
     >
       <img :src="thumbnailUrl" alt="" >
     </router-link>
-    <Actions />
+    <Actions :cardData="cardData"/>
   </div>
 </template>
 
