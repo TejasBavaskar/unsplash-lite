@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="back-btn-container">
-      <button class="back-btn">
+      <button class="back-btn" @click="goBack">
         <font-awesome-icon icon="long-arrow-alt-left" class="back-btn-icon" />
         <span>Back</span>
       </button>
@@ -76,11 +76,16 @@ export default {
   },
   methods: {
     publishDate: function() {
+      console.log(this.$router.history);
+      
       return dateFormat(this.cardData.created_at);
     },
     download: function() {
       console.log('Downloading... wwith data= ', this.cardData);
       downloadImage(this.cardData);
+    },
+    goBack: function() {
+      window.history.back();
     }
   },
   computed: {
