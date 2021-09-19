@@ -8,7 +8,7 @@
     </div>
     <div class="image-container">
       <h3>{{ cardData.user.name }}</h3>
-      <ImageInfoActions />
+      <ImageInfoActions @download="download"/>
       <img :src="imageUrl" alt="" />
       <div class="image-details">
         <div class="description-share-container">
@@ -63,6 +63,7 @@
 import getImageHeight from "../../utils/imageHeightCalculate.js";
 import ImageInfoActions from "./actionsToolbar/ImageInfoActions.vue";
 import dateFormat from '../../utils/dateFormat.js';
+import downloadImage from '../../utils/downloadImage.js';
 
 export default {
   name: "ImageInfo",
@@ -76,6 +77,10 @@ export default {
   methods: {
     publishDate: function() {
       return dateFormat(this.cardData.created_at);
+    },
+    download: function() {
+      console.log('Downloading... wwith data= ', this.cardData);
+      downloadImage(this.cardData);
     }
   },
   computed: {
@@ -154,6 +159,8 @@ export default {
   width: 70%;
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .description-share-container .share-btn-box {

@@ -9,7 +9,7 @@
       </button>
     </div>
     <div class="download-box">
-      <button class="download-btn">
+      <button class="download-btn" @click="download">
         <font-awesome-icon icon="cloud-download-alt" class="download-icon"/>
         Download
       </button>
@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  name: 'ImageInfoActions'
+  name: 'ImageInfoActions',
+  methods: {
+    download: function() {
+      this.$emit('download');
+    }
+  }
 }
 </script>
 
