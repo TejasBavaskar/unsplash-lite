@@ -1,15 +1,16 @@
 <template>
   <div class="nav-container">
     <div class="logo-box">
-      <img src="../../assets/logo.jpg" alt="" class="logo">
+      <img src="../../assets/logo.jpg" alt="" class="logo" />
     </div>
     <form class="search-box">
       <font-awesome-icon icon="search" />
-      <input 
-        type="text" 
-        placeholder="Search" 
+      <input
+        type="text"
+        placeholder="Search"
         v-model="searchKeyWord"
-        @keydown.enter.prevent='submitForm'>
+        @keydown.enter.prevent="submitForm"
+      />
     </form>
     <div class="menu-btn">
       <font-awesome-icon icon="bars" />
@@ -19,36 +20,36 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   data() {
     return {
-      searchKeyWord: ''
-    }
+      searchKeyWord: "",
+    };
   },
   methods: {
     submitForm: function() {
-      this.$store.commit('setSearchValue', this.searchKeyWord);
-      this.$router.push('/')
-      this.searchKeyWord = '';
-    }
+      this.$store.commit("setSearchValue", this.searchKeyWord);
+      this.searchKeyWord = "";
+    },
   },
-}
+};
 </script>
 
 <style scoped>
 .nav-container {
-    width: 375px;
-    height: 56px;
-    background-color: #F7F7F7;
-    display: flex;
-    position: sticky;
-    top: 0;
+  width: 375px;
+  height: 56px;
+  background-color: #f7f7f7;
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .logo-box {
   width: 130px;
   height: 100%;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   padding: 7px;
 }
 
@@ -73,12 +74,12 @@ export default {
   outline: none;
   border: 0;
   padding-left: 30px;
-  background-color: #E2DEDE;
-  color: #756F6F;
+  background-color: #e2dede;
+  color: #756f6f;
 }
 
 .search-box svg {
-  color: #756F6F;
+  color: #756f6f;
   position: absolute;
   left: 15px;
 }
@@ -91,5 +92,4 @@ export default {
   align-items: center;
   font-size: 20px;
 }
-
 </style>

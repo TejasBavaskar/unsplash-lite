@@ -1,39 +1,41 @@
 <template>
   <div class="card">
-    <h3>{{ cardData.user.name}}</h3>
-    <router-link 
-      :to="{ 
-        name: 'ImageDetails', 
-        params: { 
+    <h3>{{ cardData.user.name }}</h3>
+    <router-link
+      :to="{
+        name: 'ImageDetails',
+        params: {
           id: cardData.id,
-          cardData: cardData
-        }
+          cardData: cardData,
+        },
       }"
     >
-      <img :src="thumbnailUrl" alt="" >
+      <img :src="thumbnailUrl" alt="" />
     </router-link>
-    <Actions :cardData="cardData"/>
+    <Actions :cardData="cardData" />
   </div>
 </template>
 
 <script>
-import Actions from './Actions.vue';
-import getImageHeight from '../../../utils/imageHeightCalculate.js';
+import Actions from "./Actions.vue";
+import getImageHeight from "../../../utils/imageHeightCalculate.js";
 
 export default {
-  name: 'ImageCard',
+  name: "ImageCard",
   components: {
-    Actions
+    Actions,
   },
   props: {
     cardData: Object,
   },
   computed: {
     thumbnailUrl: function() {
-      return `${this.cardData?.urls?.raw}&q=75&auto=format&h=${getImageHeight(this.cardData)}`;
+      return `${this.cardData?.urls?.raw}&q=75&auto=format&h=${getImageHeight(
+        this.cardData
+      )}`;
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -41,6 +43,7 @@ export default {
   width: 375px;
   margin-bottom: 30px;
   background-color: white;
+  border: none;
 }
 
 .card h3 {
