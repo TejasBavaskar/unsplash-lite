@@ -1,6 +1,6 @@
 <template>
   <div class="img-container">
-    <img src="../../assets/nature.jpg" alt="home image" class="main-img">
+    <img src="../../assets/nature.jpg" alt="home image" class="main-img" />
     <div class="main-text">
       <h2>UnSplash | lite</h2>
       <span>The internet’s source of freely-usable images.</span>
@@ -12,8 +12,8 @@
 
 <script>
 export default {
-  name: 'HomeImage',
-}
+  name: "HomeImage",
+};
 </script>
 
 <style scoped>
@@ -41,7 +41,7 @@ export default {
 .main-text h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: black;
+  color: white;
 }
 
 .main-text span {
