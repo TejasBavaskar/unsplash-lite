@@ -48,7 +48,7 @@ export default {
 
 .card h3 {
   margin-left: 10px;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 .card img {
