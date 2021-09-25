@@ -12,8 +12,26 @@
         @keydown.enter.prevent="submitForm"
       />
     </form>
-    <div class="menu-btn">
-      <font-awesome-icon icon="bars" />
+    <div class="menu-container">
+      <button class="menu-btn" @click="openMenu">
+        <font-awesome-icon icon="bars" />
+      </button>
+      <div id="triangle-icon" class="triangle-icon">
+        <font-awesome-icon icon="caret-up" />
+      </div>
+      <ul id="dropdown-menu" class="dropdown-menu">
+        <li class="list">
+          <a
+            href="https://github.com/TejasBavaskar/unsplash-lite"
+            target="_blank"
+          >
+            About this Project
+          </a>
+        </li>
+        <li class="list"><a href="">API Details</a></li>
+        <li class="list"><a href="/">Home</a></li>
+        <li class="list"><a href="">Login</a></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -30,6 +48,13 @@ export default {
     submitForm: function() {
       this.$store.commit("setSearchValue", this.searchKeyWord);
       this.searchKeyWord = "";
+    },
+    openMenu: function() {
+      const triangleIcon = document.getElementById("triangle-icon");
+      const dropDownMenu = document.getElementById("dropdown-menu");
+
+      triangleIcon.classList.toggle("show");
+      dropDownMenu.classList.toggle("show");
     },
   },
 };
@@ -83,13 +108,48 @@ export default {
   position: absolute;
   left: 15px;
 }
-
-.menu-btn {
+.menu-container {
   width: 37px;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  font-size: 20px;
+  font-size: 22px;
+  position: relative;
+}
+
+.menu-container .menu-btn {
+  border: none;
+}
+
+.menu-container .dropdown-menu {
+  height: 120px;
+  width: 150px;
+  display: none;
+  position: absolute;
+  top: 90%;
+  right: -2px;
+  background-color: black;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.menu-container .dropdown-menu.show {
+  display: inline-block;
+}
+
+.menu-container .dropdown-menu .list a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-container .triangle-icon {
+  position: absolute;
+  display: none;
+  top: 54%;
+}
+
+.menu-container .triangle-icon.show {
+  display: inline-block;
 }
 </style>
