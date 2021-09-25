@@ -1,8 +1,8 @@
 <template>
   <div class="nav-container">
-    <div class="logo-box">
-      <img src="../../assets/logo.jpg" alt="" class="logo" />
-    </div>
+    <a href="/" class="logo-box">
+      <img src="../../assets/logo.svg" alt="" class="logo" />
+    </a>
     <form class="search-box">
       <font-awesome-icon icon="search" />
       <input
@@ -28,7 +28,11 @@
             About this Project
           </a>
         </li>
-        <li class="list"><a href="">API Details</a></li>
+        <li class="list">
+          <a href="https://unsplash.com/documentation" target="_blank"
+            >API Details</a
+          >
+        </li>
         <li class="list"><a href="/">Home</a></li>
         <li class="list"><a href="">Login</a></li>
       </ul>
@@ -120,10 +124,11 @@ export default {
 
 .menu-container .menu-btn {
   border: none;
+  background-color: #f7f7f7;
 }
 
 .menu-container .dropdown-menu {
-  height: 120px;
+  height: 140px;
   width: 150px;
   display: none;
   position: absolute;
@@ -136,6 +141,10 @@ export default {
 
 .menu-container .dropdown-menu.show {
   display: inline-block;
+}
+
+.menu-container .dropdown-menu .list {
+  margin: 5px 0;
 }
 
 .menu-container .dropdown-menu .list a {
